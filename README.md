@@ -1,3 +1,0 @@
-# groep02JavaWeb
-
-ayy
