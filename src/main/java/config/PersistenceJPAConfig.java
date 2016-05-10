@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -56,8 +55,8 @@ public class PersistenceJPAConfig {
     
     Properties additionalProperties() {
         Properties properties = new Properties();
-//      properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+//        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
         return properties;
     }
 }
