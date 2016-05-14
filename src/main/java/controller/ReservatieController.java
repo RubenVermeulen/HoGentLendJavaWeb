@@ -1,6 +1,8 @@
 package controller;
 
 import domain.Reservatie;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,7 @@ public class ReservatieController {
     @Autowired
     private ReservatieDao reservatieDao; 
     
-    @RequestMapping(value = "/reservaties", method = RequestMethod.GET)
+    @RequestMapping(value = "/reservaties/all", method = RequestMethod.GET)
     public String showAllReservaties(Model model) {
         List<Reservatie> reservaties = reservatieDao.getAllReservaties();
         
@@ -24,4 +26,12 @@ public class ReservatieController {
         return "reservaties";
     }
     
+    @RequestMapping(value = "/reservaties/starting-from", method = RequestMethod.GET)
+    public String showAllReservatiesStartingFrom(Model model) {
+        List<Reservatie> reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
+        
+        model.addAttribute("reservaties", reservaties);
+        
+        return "reservaties";
+    }
 }

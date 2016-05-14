@@ -1,7 +1,9 @@
 package service;
 
 import domain.Reservatie;
+import domain.ReservatieLijn;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,16 @@ public class JpaReservatieDao extends GenericDaoJpa<Reservatie> implements Reser
     public List<Reservatie> getAllReservaties() {
         TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservaties", Reservatie.class);
 
+        return q.getResultList();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Reservatie> getAllReservatiesStartingFrom(Date startingDate) {
+        TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservatiesStartingFrom", Reservatie.class);
+
+        q.setParameter("startingDate", startingDate);
+        
         return q.getResultList();
     }
 

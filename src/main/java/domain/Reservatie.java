@@ -1,29 +1,27 @@
 package domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import static org.aspectj.lang.reflect.DeclareAnnotation.Kind.Type;
-import static org.aspectj.weaver.loadtime.definition.Definition.DeclareAnnotationKind.Type;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
 @Table(name = "reservaties")
 @NamedQueries({
-    @NamedQuery(name = "Reservatie.getAllReservaties", query = "SELECT r FROM Reservatie r")
+    @NamedQuery(name = "Reservatie.getAllReservaties", query = "SELECT r FROM Reservatie r"),
+    @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.ophaalmoment <= :startingDate AND r.opgehaald = 0")
 })
 public class Reservatie implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -41,31 +39,16 @@ public class Reservatie implements Serializable {
     private Date indienmoment;
     private Date reservatiemoment;
 
+    // Nodig voor hibernate
+    @Column(columnDefinition = "BIT", length = 1)
     private boolean opgehaald;
 
-//    @OneToMany(mappedBy = "reservatie", fetch = FetchType.EAGER, orphanRemoval = true)
-//    private List<ReservatieLijn> reservatielijen;
+    @OneToMany(mappedBy = "reservatie", fetch = FetchType.EAGER, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<ReservatieLijn> reservatielijen;
 
     public Reservatie() {
     }
-
-//    public Reservatie(Gebruiker lener, LocalDateTime ophaalmoment, LocalDateTime indienmoment) {
-//        this(lener, ophaalmoment, indienmoment, LocalDateTime.now());
-//    }
-
-//    public Reservatie(Gebruiker lener, LocalDateTime ophaalmoment, LocalDateTime indienmoment,
-//            LocalDateTime reservatiemoment) {
-//        this(lener, ophaalmoment, indienmoment, reservatiemoment, false);
-//    }
-//
-//    public Reservatie(Gebruiker lener, LocalDateTime ophaalmoment, LocalDateTime indienmoment,
-//            LocalDateTime reservatiemoment, boolean opgehaald) {
-//        this.lener = lener;
-//        this.ophaalmoment = ophaalmoment;
-//        this.indienmoment = indienmoment;
-//        setReservatiemoment(reservatiemoment);
-//        this.opgehaald = opgehaald;
-//    }
 
 //    public boolean containsFilter(String sFilter, LocalDateTime dtOphaal, LocalDateTime dtIndien) {
 //        boolean filterInLijnen = false;
@@ -125,13 +108,13 @@ public class Reservatie implements Serializable {
         this.indienmoment = indienmoment;
     }
 
-//    public List<ReservatieLijn> getReservatielijnen() {
-//        return reservatielijen;
-//    }
-//
-//    public void setReservatielijnen(List<ReservatieLijn> reservatielijen) {
-//        this.reservatielijen = reservatielijen;
-//    }
+    public List<ReservatieLijn> getReservatielijnen() {
+        return reservatielijen;
+    }
+
+    public void setReservatielijnen(List<ReservatieLijn> reservatielijen) {
+        this.reservatielijen = reservatielijen;
+    }
 
     public Date getReservatiemoment() {
         return reservatiemoment;
