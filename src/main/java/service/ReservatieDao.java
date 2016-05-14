@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface ReservatieDao extends GenericDao<Reservatie> {
 
+    public List<Reservatie> getAllReservaties();
     public List<Reservatie> getReservationsByDates(LocalDateTime ophaalmoment, LocalDateTime indienmoment);
 
 }
