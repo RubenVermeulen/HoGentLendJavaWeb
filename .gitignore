@@ -1,2 +1,4 @@
 /target/
 /src/main/java/config/PersistenceJPAConfig.java
+nb-configuration.xml
+nbactions.xml
