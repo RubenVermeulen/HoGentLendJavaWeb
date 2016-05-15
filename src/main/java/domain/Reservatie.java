@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,7 +23,8 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "reservaties")
 @NamedQueries({
     @NamedQuery(name = "Reservatie.getAllReservaties", query = "SELECT r FROM Reservatie r"),
-    @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.ophaalmoment <= :startingDate AND r.opgehaald = 0")
+    @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.ophaalmoment <= :startingDate AND r.opgehaald = 0"),
+    @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaald", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1")     
 })
 public class Reservatie implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -30,9 +33,9 @@ public class Reservatie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-//    @ManyToOne
-//    @JoinColumn(name = "lener_id")
-//    private Gebruiker lener;
+    @ManyToOne
+    @JoinColumn(name = "lener_id")
+    private Gebruiker lener;
 
     // Date in plaats van LocalDateTime omdat Java EE nog maar aan versie 7 zit.
     private Date ophaalmoment;
@@ -84,13 +87,13 @@ public class Reservatie implements Serializable {
         this.id = id;
     }
 
-//    public Gebruiker getLener() {
-//        return lener;
-//    }
-//
-//    public void setLener(Gebruiker lener) {
-//        this.lener = lener;
-//    }
+    public Gebruiker getLener() {
+        return lener;
+    }
+
+    public void setLener(Gebruiker lener) {
+        this.lener = lener;
+    }
 
     public Date getOphaalmoment() {
         return ophaalmoment;

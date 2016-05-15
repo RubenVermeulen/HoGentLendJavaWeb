@@ -15,5 +15,6 @@ public interface ReservatieDao extends GenericDao<Reservatie> {
     public List<Reservatie> getAllReservaties();
     public List<Reservatie> getAllReservatiesStartingFrom(Date startingDate);
     public List<Reservatie> getReservationsByDates(LocalDateTime ophaalmoment, LocalDateTime indienmoment);
+    public List<Reservatie> getAllReservatiesOpgehaald();
 
 }

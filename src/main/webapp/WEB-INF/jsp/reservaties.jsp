@@ -12,16 +12,19 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Gebruiker</th>
                 <th>Ophaalmoment</th>
                 <th>Indienmoment</th>
                 <th>Gereserveerd op</th>
                 <th>Status</th>
+                <th>Materialen</th>
             </tr>
         </thead>
 
         <c:forEach var="r" items="${reservaties}">
             <tr>
                 <td>${r.id}</td>
+                <td>${r.lener}</td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.ophaalmoment}" /></td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.indienmoment}" /></td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.reservatiemoment}" /></td>
@@ -35,8 +38,20 @@
                         </c:otherwise>
                     </c:choose>
                 </td>
-            </tr>
-        </c:forEach>
+                <td>
+                    <table>
+
+                        <thead>
+                            <tr><th>Materiaal</th><th>Aantal</th></tr>
+                        </thead>
+
+                        <c:forEach var="rl" items="${r.reservatielijen}">
+                            <tr><td>${rl.materiaal}</td><td>${rl.aantal}</td></tr>
+                        </c:forEach>
+
+                    </table>
+                </c:forEach></td>
+        </tr>
     </table>
 </div>
 

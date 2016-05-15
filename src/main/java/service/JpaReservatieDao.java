@@ -42,4 +42,11 @@ public class JpaReservatieDao extends GenericDaoJpa<Reservatie> implements Reser
         return q.getResultList();
     }
 
+    @Override
+    public List<Reservatie> getAllReservatiesOpgehaald() {
+        TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservatiesOpgehaald", Reservatie.class);
+
+        return q.getResultList();
+    }
+
 }
