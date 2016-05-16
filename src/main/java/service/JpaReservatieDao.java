@@ -31,20 +31,31 @@ public class JpaReservatieDao extends GenericDaoJpa<Reservatie> implements Reser
 
         return q.getResultList();
     }
-    
+
     @Override
     @Transactional(readOnly = true)
     public List<Reservatie> getAllReservatiesStartingFrom(Date startingDate) {
         TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservatiesStartingFrom", Reservatie.class);
 
         q.setParameter("startingDate", startingDate);
-        
+
         return q.getResultList();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Reservatie> getAllReservatiesOpgehaald() {
         TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservatiesOpgehaald", Reservatie.class);
+
+        return q.getResultList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Reservatie> getAllReservatiesOpgehaaldStartingFrom(Date startingDate) {
+        TypedQuery<Reservatie> q = em.createNamedQuery("Reservatie.getAllReservatiesOpgehaaldStartingFrom", Reservatie.class);
+
+        q.setParameter("startingDate", startingDate);
 
         return q.getResultList();
     }

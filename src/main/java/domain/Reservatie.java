@@ -23,8 +23,11 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "reservaties")
 @NamedQueries({
     @NamedQuery(name = "Reservatie.getAllReservaties", query = "SELECT r FROM Reservatie r"),
-    @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.ophaalmoment <= :startingDate AND r.opgehaald = 0"),
-    @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaald", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1")     
+    @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r "
+            + "FROM Reservatie r WHERE r.ophaalmoment >= :startingDate"),
+    @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaald", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1"),
+    @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaaldStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1 AND  r.ophaalmoment <= :startingDate ")     
+        
 })
 public class Reservatie implements Serializable {
     private static final long serialVersionUID = 1L;

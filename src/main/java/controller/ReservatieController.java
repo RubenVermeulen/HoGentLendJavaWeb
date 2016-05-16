@@ -21,31 +21,39 @@ import service.ReservatieDao;
 
 @Controller
 public class ReservatieController {
-
+    
     @Autowired
     private ReservatieDao reservatieDao;
-
+    
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
     public String showAllReservaties(Model model, Date datum, Principal principal) {
-        // todo: handle datum als  die niet een lege string is
-        List<Reservatie> reservaties = reservatieDao.getAllReservaties();
-
+        
+        List<Reservatie> reservaties = null;
+        if (datum == null) {
+            reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
+        } else {
+            reservaties = reservatieDao.getAllReservatiesStartingFrom(datum);
+        }
         model.addAttribute("username", principal.getName());
         model.addAttribute("reservaties", reservaties);
-
+        
         return "reservaties";
     }
     
     @RequestMapping(value = "/reservaties/uitgeleende", method = RequestMethod.GET)
     public String showAllReservatiesOpgehaald(Model model, Date datum) {
-        // todo: handle datum als  die niet een lege string is
-        List<Reservatie> reservaties = reservatieDao.getAllReservatiesOpgehaald();
-
+        
+        List<Reservatie> reservaties = null;
+        if (datum == null) {
+            reservaties = reservatieDao.getAllReservatiesOpgehaald();
+        } else {
+            reservaties = reservatieDao.getAllReservatiesOpgehaaldStartingFrom(datum);
+        }
+        
         model.addAttribute("reservaties", reservaties);
-
+        
         return "reservaties";
     }
-   
 
 //    @RequestMapping(value = "/reservaties/starting-from", method = RequestMethod.GET)
 //    public String showAllReservatiesStartingFrom(Model model, String datum) {
@@ -56,9 +64,6 @@ public class ReservatieController {
 //
 //        return "reservaties";
 //    }
-     
-    
-
     public List<Materiaal> getMaterialenUitReservaties(List<Reservatie> reservaties) {
         List<ReservatieLijn> reservatieLijnen = new ArrayList<>();
         
@@ -76,5 +81,5 @@ public class ReservatieController {
         }
         return materialen;
     }
-
+    
 }
