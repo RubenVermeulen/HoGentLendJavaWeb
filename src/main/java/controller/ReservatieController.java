@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class ReservatieController {
         Date date = Utils.stringToDate(datum);
         List<Reservatie> reservaties = null;
         if (date == null) {
-            reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
+            reservaties = reservatieDao.getAllReservatiesStartingFrom(Calendar.getInstance().getTime());
         } else {
             reservaties = reservatieDao.getAllReservatiesStartingFrom(date);
         }
