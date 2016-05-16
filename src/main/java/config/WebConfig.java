@@ -1,5 +1,6 @@
 package config;
 
+import bean.FilterData;
 import domain.ReservatieLijn;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ReservatieLijnDao reservatieLijnDao() {
         return new JpaReservatieLijnDao();
+    }
+    
+    @Bean
+    public FilterData filterData(){
+        return new FilterData();
     }
 
     @Override

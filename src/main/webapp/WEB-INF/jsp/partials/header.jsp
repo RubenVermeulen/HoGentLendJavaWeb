@@ -26,9 +26,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <!--                        
+                        geen paginas voor navigatie nodig...
                         <li><a href="#">Pagina 1</a></li>
                         <li><a href="#">Pagina 2</a></li>
-                        <li><a href="#">Pagina 3</a></li>
+                        <li><a href="#">Pagina 3</a></li>!-->
                     </ul>
                 </div>
             </div>
