@@ -11,7 +11,6 @@
 
 <c:forEach var="r" items="${reservaties}">
     <div class="row list">
-<p>${username}</p>
 
         <!-- Basic information -->
         <div class="col-md-5 list-items">

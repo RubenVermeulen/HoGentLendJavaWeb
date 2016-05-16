@@ -29,15 +29,6 @@ public class ReservatieController {
     private ReservatieDao reservatieDao;
     
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
-    public String showAllReservaties(Model model, Date datum, Principal principal) throws IOException {
-        // todo: handle datum als  die niet een lege string is
-        List<Reservatie> reservaties = reservatieDao.getAllReservaties();
-
-        
-        JSONObject json = readJsonFromUrl("https://studservice.hogent.be/auth/427629xb/58ec1755dd1302b82b7f9ab88a9d03ef8a10cdc8edc0cea90c41e3697f7ed08a");
-        System.out.println(json.getString("TYPE"));
-        
-        model.addAttribute("username", json.getString("TYPE"));
     public String showAllReservaties(Model model, Date datum, Principal principal) {
         
         List<Reservatie> reservaties = null;
