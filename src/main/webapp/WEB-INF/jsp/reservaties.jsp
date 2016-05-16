@@ -5,7 +5,10 @@
     <jsp:param name="title" value="Reservaties"/>
 </jsp:include>
 
+<a href="../filter" class="gaterugknop btn btn-primary">Ga terug naar lijst kiezen</a>
+
 <h1>Reservaties</h1>
+
 
 <div class="table-responsive">
     <table class="table table-hover table-bordered">
