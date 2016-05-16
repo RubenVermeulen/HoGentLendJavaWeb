@@ -24,7 +24,7 @@
         <c:forEach var="r" items="${reservaties}">
             <tr>
                 <td>${r.id}</td>
-                <td>${r.lener}</td>
+                <td>${r.lener.email}</td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.ophaalmoment}" /></td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.indienmoment}" /></td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${r.reservatiemoment}" /></td>
@@ -46,7 +46,7 @@
                         </thead>
                         
                         <c:forEach var="rl" items="${r.reservatielijnen}">
-                            <tr><td>${rl.materiaal}</td><td>${rl.aantal}</td></tr>
+                            <tr><td>${rl.materiaal.naam}</td><td>${rl.aantal}</td></tr>
                         </c:forEach>
                         
                     </table>
