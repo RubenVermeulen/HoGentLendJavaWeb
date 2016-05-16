@@ -48,7 +48,7 @@ public class Reservatie implements Serializable {
 
     @OneToMany(mappedBy = "reservatie", fetch = FetchType.EAGER, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private List<ReservatieLijn> reservatielijen;
+    private List<ReservatieLijn> reservatielijnen;
 
     public Reservatie() {
     }
@@ -112,11 +112,11 @@ public class Reservatie implements Serializable {
     }
 
     public List<ReservatieLijn> getReservatielijnen() {
-        return reservatielijen;
+        return reservatielijnen;
     }
 
     public void setReservatielijnen(List<ReservatieLijn> reservatielijen) {
-        this.reservatielijen = reservatielijen;
+        this.reservatielijnen = reservatielijen;
     }
 
     public Date getReservatiemoment() {
