@@ -140,17 +140,41 @@ body {
     display: inline-block;
     margin-top: 2px;
     padding: 2px 6px; 
+    border-radius: 3px;
 }
 
 .tag-success {
-
     background: #15CA15;
-    border-radius: 2px;
     color: #fff;
 }
 
 .tag-warning {
     background: orange;
-    border-radius: 2px;
     color: #fff; 
+}
+
+/* Filter */
+
+#filter {
+    padding: 15px;
+    background: #eeeeee;
+}
+
+#filter .form-group {
+    margin-bottom: 0;
+}
+
+#filter input[type="submit"] {
+    background: #009d7e;
+    border: 1px solid #00876C;
+    transition: background .2s linear;
+}
+
+#filter input[type="submit"]:hover {
+    background: #00876C;
+}
+
+#filter input, #filter select, #filter a {
+    max-width: 100%;
+    margin: 5px 0;
 }
