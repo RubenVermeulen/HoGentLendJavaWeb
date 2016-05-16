@@ -41,6 +41,7 @@ public class ReservatieController {
             reservaties = reservatieDao.getAllReservatiesStartingFrom(date);
         }
         model.addAttribute("username", principal.getName());
+        model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
         
         return "reservaties";
@@ -56,6 +57,7 @@ public class ReservatieController {
             reservaties = reservatieDao.getAllReservatiesOpgehaaldStartingFrom(date);
         }
         
+        model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
         
         return "reservaties";

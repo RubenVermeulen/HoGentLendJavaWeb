@@ -5,10 +5,13 @@
  */
 package domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +20,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "gebruikers")
+@NamedQueries({
+    @NamedQuery(name = "Gebruiker.getAllBeheerders", query = "SELECT g FROM Gebruiker g WHERE g.is_beheerder = 1")
+})
 public class Gebruiker {
 
     @Id
@@ -26,6 +32,9 @@ public class Gebruiker {
     private String voornaam;
     private String achternaam;
     private String email;
+    
+    @Column(columnDefinition = "BIT", length = 1)
+    private boolean is_beheerder;
    // private String paswoord;
     //private boolean hoofdbeheerder;
     // private boolean beheerder;
