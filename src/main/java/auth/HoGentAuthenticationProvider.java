@@ -3,6 +3,7 @@ package auth;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +33,7 @@ public class HoGentAuthenticationProvider implements AuthenticationProvider {
             } else {
                 return null;
             }
-        } catch (IOException e) {
+        } catch (IOException|JSONException e) {
             return null;
         }
     }
@@ -42,7 +43,7 @@ public class HoGentAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 
-    private boolean connectToHoGent(String username, String password) throws IOException {
+    private boolean connectToHoGent(String username, String password) throws IOException, JSONException {
 
         String url = "https://studservice.hogent.be/auth/" + username + "/" + hash256(password);
 

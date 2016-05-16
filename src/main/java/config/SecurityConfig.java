@@ -20,11 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         auth.authenticationProvider(authProvider);
         
-//        auth
-//                // enable in memory based authentication with a user named
-//                // "user" and "admin"
-//                .inMemoryAuthentication()
-//                .withUser("username").password("123456").roles("USER");
         
     }
 
