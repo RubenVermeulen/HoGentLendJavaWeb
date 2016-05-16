@@ -3,6 +3,7 @@ package controller;
 import domain.Materiaal;
 import domain.Reservatie;
 import domain.ReservatieLijn;
+import java.security.Principal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.ReservatieDao;
 
 @Controller
@@ -21,9 +23,10 @@ public class ReservatieController {
     private ReservatieDao reservatieDao;
 
     @RequestMapping(value = "/reservaties/all", method = RequestMethod.GET)
-    public String showAllReservaties(Model model) {
+    public String showAllReservaties(Model model, Principal principal) {
         List<Reservatie> reservaties = reservatieDao.getAllReservaties();
 
+        model.addAttribute("username", principal.getName());
         model.addAttribute("reservaties", reservaties);
 
         return "reservaties";
@@ -39,7 +42,7 @@ public class ReservatieController {
     }
     
     @RequestMapping(value = "/reservaties/opgehaald", method = RequestMethod.GET)
-    public String showAllReservatiesOpgehaald(Model model) {
+    public String showAllReservatiesOpgehaald(Model model, Principal principal) {
         List<Reservatie> reservaties = reservatieDao.getAllReservatiesOpgehaald();
 
         model.addAttribute("reservaties", reservaties);

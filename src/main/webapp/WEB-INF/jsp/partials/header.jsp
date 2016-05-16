@@ -33,6 +33,17 @@
                         <li><a href="#">Pagina 3</a></li>!-->
                     </ul>
                 </div>
+                <%--
+                <ul class="navbar-nav navbar-right">
+                    <c:url var="logoutUrl" value="/logout"/>
+                    <li>
+                    <form action="${logoutUrl}" method="post">
+                        <input type="submit" value="Uitloggen"/>
+                        <input type="hidden" name="${_csrf.paramterName}" value="${_csrf.token}"/>
+                    </form>
+                    </li>
+                </ul>
+                --%>
             </div>
         </div>
 

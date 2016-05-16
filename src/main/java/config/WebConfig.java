@@ -19,7 +19,7 @@ import service.ReservatieLijnDao;
 @Configuration
 @EnableWebMvc
 @ComponentScan("controller")
-@Import({PersistenceJPAConfig.class})
+@Import({PersistenceJPAConfig.class, SecurityConfig.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
