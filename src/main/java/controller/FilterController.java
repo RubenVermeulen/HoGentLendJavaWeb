@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import service.ReservatieDao;
-import utils.MyDateUtils;
+import util.Utils;
 
 @Controller
 public class FilterController {
@@ -38,7 +38,7 @@ public class FilterController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public ModelAndView doFilter(@ModelAttribute("filterdata") FilterData data, Model model) {
-        Date date = MyDateUtils.stringToDate(data.getDatum());
+        Date date = Utils.stringToDate(data.getDatum());
         
         ModelAndView redirectModel = new ModelAndView("filter");
         redirectModel.addObject(data);

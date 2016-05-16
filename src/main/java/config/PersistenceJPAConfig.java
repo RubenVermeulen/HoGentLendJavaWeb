@@ -35,7 +35,7 @@ public class PersistenceJPAConfig {
     public DataSource dataSource() {        
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://localhost:53503;databaseName=HoGentLend");
+        dataSource.setUrl("jdbc:sqlserver://localhost:57859;databaseName=HoGentLend");
         dataSource.setUsername("sa");
         dataSource.setPassword("Password123");
         return dataSource;

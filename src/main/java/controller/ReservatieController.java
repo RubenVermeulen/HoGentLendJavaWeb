@@ -4,6 +4,7 @@ import bean.FilterData;
 import domain.Materiaal;
 import domain.Reservatie;
 import domain.ReservatieLijn;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.DateFormat;
 import java.time.Instant;
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.ReservatieDao;
-import utils.MyDateUtils;
+import util.Utils;
+import static util.Utils.readJsonFromUrl;
 
 @Controller
 public class ReservatieController {
@@ -29,7 +32,7 @@ public class ReservatieController {
     
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
     public String showAllReservaties(Model model, String datum, Principal principal) {
-        Date date = MyDateUtils.stringToDate(datum);
+        Date date = Utils.stringToDate(datum);
         List<Reservatie> reservaties = null;
         if (date == null) {
             reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
@@ -44,7 +47,7 @@ public class ReservatieController {
     
     @RequestMapping(value = "/reservaties/uitgeleende", method = RequestMethod.GET)
     public String showAllReservatiesOpgehaald(Model model, String datum) {
-        Date date = MyDateUtils.stringToDate(datum);
+        Date date = Utils.stringToDate(datum);
         List<Reservatie> reservaties = null;
         if (date == null) {
             reservaties = reservatieDao.getAllReservatiesOpgehaald();
