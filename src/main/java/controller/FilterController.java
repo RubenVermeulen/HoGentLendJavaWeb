@@ -5,9 +5,15 @@ package controller;
 
 import bean.FilterData;
 import domain.Reservatie;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,10 +24,10 @@ import service.ReservatieDao;
 
 @Controller
 public class FilterController {
-    
+
     @Autowired
     private FilterData filterData;
-    
+
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public String showFilterPage(Model model) {
         model.addAttribute(filterData);
@@ -30,10 +36,22 @@ public class FilterController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public ModelAndView doFilter(@ModelAttribute("filterdata") FilterData data, Model model) {
-        System.out.println("DE DATA!!!!!b ------------- " + data.toString());
-        
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date;
+        try {
+            date = formatter.parse(data.getDatum());
+        } catch (ParseException e) {
+            date = null;
+        }
+        if ((data.getDatum() != null && !data.getDatum().equals("")) && date == null){
+            ModelAndView redirectModel = new ModelAndView("filter");
+            redirectModel.addObject(filterData);
+            redirectModel.addObject("datumError", "De datum moet dd/MM/yyyy als formaat hebben.");
+            return redirectModel;
+        }
+
         return new ModelAndView(
-            "redirect:/reservaties/" + filterData.getSoortLijst(),
-            "filterdata", data);
+                "redirect:/reservaties/" + filterData.getSoortLijst(),
+                "datum", date);
     }
 }

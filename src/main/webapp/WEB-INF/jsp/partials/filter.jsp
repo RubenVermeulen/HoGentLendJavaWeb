@@ -1,7 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="col-md-4">
+    <c:if test="${not empty datumError}">
+        <div class="alert alert-warning">${datumError}</div>
+    </c:if>
       <form:form method="POST" action="filter" modelAttribute="filterData">
         <div class="radio">
             <label>
