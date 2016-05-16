@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin().
-                defaultSuccessUrl("/reservaties/all").
+                defaultSuccessUrl("/filter").
                 loginPage("/login");
 
         http.authorizeRequests()

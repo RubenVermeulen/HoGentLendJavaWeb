@@ -70,3 +70,44 @@ body {
 .gaterugknop {
     margin-top: 10px;
 }
+
+/* Login */
+
+#login {
+    padding: 0;
+}
+
+#login > .row {
+    margin: 0;
+}
+
+.branding {
+    position: fixed;
+    min-height: 100%;
+    background: #ffffff url('../img/login-bg.jpg') left no-repeat;
+    background-size: cover;
+}
+
+#login .hogent-lend-brand {
+    padding: 25px 0;
+}
+
+#login .login-aside {
+    height: 100%;
+    padding-top: 120px;
+    padding-left: 50px;
+    background: #ffffff;
+}
+
+#login div div{
+    margin-bottom: 1em;
+}
+
+@media (max-width : 400px) {
+
+    #login .login-aside {
+    padding-top: 30px;
+    padding-left: 15px;
+    background: #ffffff;
+    }
+}

@@ -25,7 +25,7 @@ public class LoginController {
             Model model) {
 
         if (error != null) {
-            model.addAttribute("error", "Invalid username and password!");
+            model.addAttribute("error", "Ongeldige gebruikersnaam of wachtwoord");
         }
 //        if (logout != null) {
 //            model.addAttribute("msg", "You've been logged out successfully.");
