@@ -14,6 +14,10 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,6 +64,16 @@ public class Utils {
         } finally {
             is.close();
         }
+    }
+    public static Date stringToDate(String datum) {
+        DateFormat formatter = new SimpleDateFormat("yyy-MM-dd");
+        Date date;
+        try {
+            date = formatter.parse(datum);
+        } catch (ParseException e) {
+            date = null;
+        }
+        return date;
     }
 
 }

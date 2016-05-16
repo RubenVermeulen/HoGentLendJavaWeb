@@ -6,6 +6,7 @@ import domain.Reservatie;
 import domain.ReservatieLijn;
 import java.io.IOException;
 import java.security.Principal;
+import java.text.DateFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.ReservatieDao;
+import util.Utils;
 import static util.Utils.readJsonFromUrl;
 
 @Controller
@@ -29,44 +31,37 @@ public class ReservatieController {
     private ReservatieDao reservatieDao;
     
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
-    public String showAllReservaties(Model model, Date datum, Principal principal) {
-        
+    public String showAllReservaties(Model model, String datum, Principal principal) {
+        Date date = Utils.stringToDate(datum);
         List<Reservatie> reservaties = null;
-        if (datum == null) {
+        if (date == null) {
             reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
         } else {
-            reservaties = reservatieDao.getAllReservatiesStartingFrom(datum);
+            reservaties = reservatieDao.getAllReservatiesStartingFrom(date);
         }
         model.addAttribute("username", principal.getName());
+        model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
         
         return "reservaties";
     }
     
     @RequestMapping(value = "/reservaties/uitgeleende", method = RequestMethod.GET)
-    public String showAllReservatiesOpgehaald(Model model, Date datum) {
-        
+    public String showAllReservatiesOpgehaald(Model model, String datum) {
+        Date date = Utils.stringToDate(datum);
         List<Reservatie> reservaties = null;
-        if (datum == null) {
+        if (date == null) {
             reservaties = reservatieDao.getAllReservatiesOpgehaald();
         } else {
-            reservaties = reservatieDao.getAllReservatiesOpgehaaldStartingFrom(datum);
+            reservaties = reservatieDao.getAllReservatiesOpgehaaldStartingFrom(date);
         }
         
+        model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
         
         return "reservaties";
     }
 
-//    @RequestMapping(value = "/reservaties/starting-from", method = RequestMethod.GET)
-//    public String showAllReservatiesStartingFrom(Model model, String datum) {
-//        
-//        List<Reservatie> reservaties = reservatieDao.getAllReservatiesStartingFrom(Date.from(Instant.now()));
-//
-//        model.addAttribute("reservaties", reservaties);
-//
-//        return "reservaties";
-//    }
     public List<Materiaal> getMaterialenUitReservaties(List<Reservatie> reservaties) {
         List<ReservatieLijn> reservatieLijnen = new ArrayList<>();
         
