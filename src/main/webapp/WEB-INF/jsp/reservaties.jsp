@@ -44,11 +44,11 @@
                         <thead>
                             <tr><th>Materiaal</th><th>Aantal</th></tr>
                         </thead>
-
-                        <c:forEach var="rl" items="${r.reservatielijen}">
-                            <tr><td>${rl.materiaal}</td><td>${rl.aantal}</td></tr>
+                        
+                        <c:forEach var="rl" items="r.reservatielijen">
+                            <tr><td>rl.materiaal</td><td>rl.aantal</td></tr>
                         </c:forEach>
-
+                        
                     </table>
                 </c:forEach></td>
         </tr>
