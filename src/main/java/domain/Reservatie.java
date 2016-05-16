@@ -24,7 +24,7 @@ import org.hibernate.annotations.FetchMode;
 @NamedQueries({
     @NamedQuery(name = "Reservatie.getAllReservaties", query = "SELECT r FROM Reservatie r"),
     @NamedQuery(name = "Reservatie.getAllReservatiesStartingFrom", query = "SELECT r "
-            + "FROM Reservatie r WHERE r.ophaalmoment >= :startingDate"),
+            + "FROM Reservatie r WHERE r.ophaalmoment = :startingDate"),
     @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaald", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1"),
     @NamedQuery(name = "Reservatie.getAllReservatiesOpgehaaldStartingFrom", query = "SELECT r FROM Reservatie r WHERE r.opgehaald = 1 AND  r.ophaalmoment >= :startingDate ")     
         
