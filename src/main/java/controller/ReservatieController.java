@@ -34,12 +34,13 @@ public class ReservatieController {
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
     public String showAllReservaties(Model model, String datum, Principal principal) {
         Date date = Utils.stringToDate(datum);
-        List<Reservatie> reservaties = null;
-        if (date == null) {
-            reservaties = reservatieDao.getAllReservatiesStartingFrom(Calendar.getInstance().getTime());
-        } else {
-            reservaties = reservatieDao.getAllReservatiesStartingFrom(date);
+        if(datum.isEmpty()){
+        date=Calendar.getInstance().getTime();
         }
+        List<Reservatie> reservaties = null;
+        
+            reservaties = reservatieDao.getAllReservatiesStartingFrom(date);
+        
         model.addAttribute("username", principal.getName());
         model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
