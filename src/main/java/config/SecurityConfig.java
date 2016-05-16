@@ -1,5 +1,7 @@
 package config;
 
+import auth.HoGentAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,13 +12,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private HoGentAuthenticationProvider authProvider;
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                // enable in memory based authentication with a user named
-                // "user" and "admin"
-                .inMemoryAuthentication()
-                .withUser("username").password("123456").roles("USER");
+        
+        auth.authenticationProvider(authProvider);
+        
+//        auth
+//                // enable in memory based authentication with a user named
+//                // "user" and "admin"
+//                .inMemoryAuthentication()
+//                .withUser("username").password("123456").roles("USER");
+        
     }
 
     @Override

@@ -1,5 +1,6 @@
 package config;
 
+import auth.HoGentAuthenticationProvider;
 import bean.FilterData;
 import domain.ReservatieLijn;
 import org.springframework.context.annotation.Bean;
@@ -26,15 +27,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public ReservatieDao reservatieDao() {
         return new JpaReservatieDao();
     }
-    
+
     @Bean
     public ReservatieLijnDao reservatieLijnDao() {
         return new JpaReservatieLijnDao();
     }
-    
+
     @Bean
-    public FilterData filterData(){
+    public FilterData filterData() {
         return new FilterData();
+    }
+
+    @Bean
+    public HoGentAuthenticationProvider hoGentAuthenticationProvider() {
+        return new HoGentAuthenticationProvider();
     }
 
     @Override

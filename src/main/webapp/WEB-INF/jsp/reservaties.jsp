@@ -8,7 +8,7 @@
 <a href="../filter" class="gaterugknop btn btn-primary">Ga terug naar lijst kiezen</a>
 
 <h1>Reservaties</h1>
-
+<p>${username}</p>
 
 <div class="table-responsive">
     <table class="table table-hover table-bordered">
