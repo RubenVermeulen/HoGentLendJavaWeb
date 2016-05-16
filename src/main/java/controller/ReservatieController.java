@@ -26,7 +26,7 @@ public class ReservatieController {
     private ReservatieDao reservatieDao;
 
     @RequestMapping(value = "/reservaties/gereserveerde", method = RequestMethod.GET)
-    public String showAllReservaties(Model model, Date datum) {
+    public String showAllReservaties(Model model, Date datum, Principal principal) {
         // todo: handle datum als  die niet een lege string is
         List<Reservatie> reservaties = reservatieDao.getAllReservaties();
 
