@@ -106,8 +106,51 @@ body {
 @media (max-width : 400px) {
 
     #login .login-aside {
-    padding-top: 30px;
-    padding-left: 15px;
-    background: #ffffff;
+        padding-top: 30px;
+        padding-left: 15px;
+        background: #ffffff;
     }
+}
+
+@media (max-width : 990px) {
+  
+    .list .list-items {
+        margin-bottom: 20px; 
+    }
+}
+
+/* List */
+
+.list {
+    margin: 0 0 15px 0; 
+    padding: 20px 0;
+    border: 1px solid #dadada; 
+    background: #fff
+}
+
+.list .list-items .detail {
+    margin-bottom: 10px;
+}
+
+.list .list-items .detail:last-of-type {
+    margin-bottom: 0;
+}
+
+.tag {
+    display: inline-block;
+    margin-top: 2px;
+    padding: 2px 6px; 
+}
+
+.tag-success {
+
+    background: #15CA15;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.tag-warning {
+    background: orange;
+    border-radius: 2px;
+    color: #fff; 
 }
