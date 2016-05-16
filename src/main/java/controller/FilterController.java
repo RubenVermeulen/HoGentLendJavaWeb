@@ -45,13 +45,12 @@ public class FilterController {
         }
         if ((data.getDatum() != null && !data.getDatum().equals("")) && date == null){
             ModelAndView redirectModel = new ModelAndView("filter");
-            redirectModel.addObject(filterData);
+            redirectModel.addObject(data);
             redirectModel.addObject("datumError", "De datum moet dd/MM/yyyy als formaat hebben.");
             return redirectModel;
         }
-
         return new ModelAndView(
-                "redirect:/reservaties/" + filterData.getSoortLijst(),
+                "redirect:/reservaties/" + data.getSoortLijst(),
                 "datum", date);
     }
 }
