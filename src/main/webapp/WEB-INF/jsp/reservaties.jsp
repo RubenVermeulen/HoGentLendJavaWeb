@@ -48,7 +48,7 @@
                         <c:forEach var="rl" items="${r.reservatielijnen}">
                             <tr><td>${rl.materiaal}</td><td>${rl.aantal}</td></tr>
                         </c:forEach>
-
+                        
                     </table>
                 </c:forEach></td>
         </tr>
