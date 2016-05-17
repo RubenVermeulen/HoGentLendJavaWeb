@@ -2,12 +2,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="partials/header.jsp">
-    <jsp:param name="title" value="Reservaties"/>
+    <jsp:param name="title" value="${title}"/>
 </jsp:include>
 
 <a href="../filter" class="gaterugknop btn btn-primary">Ga terug naar lijst kiezen</a>
 
-<h1>Reservaties</h1>
+<h1>${title}</h1>
 
 <c:choose>
     <c:when test="${isEmptyReservaties == true}">
