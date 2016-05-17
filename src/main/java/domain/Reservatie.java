@@ -56,32 +56,6 @@ public class Reservatie implements Serializable {
     public Reservatie() {
     }
 
-//    public boolean containsFilter(String sFilter, LocalDateTime dtOphaal, LocalDateTime dtIndien) {
-//        boolean filterInLijnen = false;
-//        for (ReservatieLijn l : reservatielijen) {
-//            filterInLijnen = l.containsFilter(sFilter, dtOphaal, dtIndien);
-//            if (filterInLijnen) {
-//                break;
-//            }
-//        }
-//
-//        boolean filterInLener = lener.containsFilter(sFilter);
-//
-//        boolean lenerFiltersMatter = (sFilter != null && !sFilter.trim().isEmpty()) || (dtOphaal == null && dtIndien == null);
-//
-//        boolean filterDatum = MyDateUtil.doesFirstPairOverlapWithSecond(dtOphaal, dtIndien, ophaalmoment, indienmoment);
-//
-//        if (lenerFiltersMatter) {
-//            if (dtOphaal == null && dtIndien == null) {
-//                return filterDatum || filterInLijnen || filterInLener;
-//            } else {
-//                return (filterDatum && filterInLener) || filterInLijnen;
-//            }
-//        } else {
-//            return filterDatum || filterInLijnen;
-//        }
-//    }
-
     public Long getId() {
         return id;
     }

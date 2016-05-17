@@ -49,6 +49,7 @@ public class ReservatieController {
         model.addAttribute("username", principal.getName());
         model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
+        model.addAttribute("title", "Gereserveerd");
 
         return "reservaties";
     }
@@ -66,6 +67,7 @@ public class ReservatieController {
 
         model.addAttribute("isEmptyReservaties", reservaties.isEmpty());
         model.addAttribute("reservaties", reservaties);
+        model.addAttribute("title", "Uitgeleende materialen");
 
         return "reservaties";
     }

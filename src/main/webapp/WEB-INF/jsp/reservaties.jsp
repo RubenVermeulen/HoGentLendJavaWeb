@@ -9,7 +9,6 @@
 
 <h1>Reservaties</h1>
 
-
 <c:choose>
     <c:when test="${isEmptyReservaties == true}">
         <p>Er zijn geen reservaties voor de gekozen datum.</p>
