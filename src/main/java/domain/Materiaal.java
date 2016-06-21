@@ -53,13 +53,13 @@ public class Materiaal implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "materiaal_doelgroepen", joinColumns = @JoinColumn(name = "materiaal_id"),
-            inverseJoinColumns = @JoinColumn(name = "groep_id"))
+            inverseJoinColumns = @JoinColumn(name = "doelgroep_id"))
     private List<Groep> doelgroepen = new ArrayList();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "materiaal_leergebieden", joinColumns = @JoinColumn(name = "materiaal_id"),
-            inverseJoinColumns = @JoinColumn(name = "groep_id"))
+            inverseJoinColumns = @JoinColumn(name = "leergebied_id"))
     private List<Groep> leergebieden = new ArrayList();
     
     protected Materiaal() {

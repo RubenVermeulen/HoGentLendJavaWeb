@@ -20,7 +20,7 @@ public class Groep implements Serializable {
     private String groep;
     
     // Nodig voor hibernate
-    @Column(columnDefinition = "BIT", length = 1)
+    @Column(name="isleergroep", columnDefinition = "BIT", length = 1)
     private boolean isLeerGebied;
 
     protected Groep() {

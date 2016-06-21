@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "gebruikers")
 @NamedQueries({
-    @NamedQuery(name = "Gebruiker.getAllBeheerders", query = "SELECT g FROM Gebruiker g WHERE g.is_beheerder = 1")
+    @NamedQuery(name = "Gebruiker.getAllBeheerders", query = "SELECT g FROM Gebruiker g WHERE g.beheerder = 1")
 })
 public class Gebruiker {
 
@@ -33,7 +33,7 @@ public class Gebruiker {
     private String achternaam;
     private String email;
     
-    @Column(columnDefinition = "BIT", length = 1)
+    @Column(name= "beheerder",columnDefinition = "BIT", length = 1)
     private boolean is_beheerder;
    // private String paswoord;
     //private boolean hoofdbeheerder;
