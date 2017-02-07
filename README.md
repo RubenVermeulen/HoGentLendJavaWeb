@@ -10,7 +10,7 @@ This as a Java web application. It functions as an easy overview of the current 
 
 ## Team members
 
-Xander Berkein
-Sven Dedeene
-Alexander Van Damme
-Ruben Vermeulen
+- Xander Berkein
+- Sven Dedeene
+- Alexander Van Damme
+- Ruben Vermeulen
